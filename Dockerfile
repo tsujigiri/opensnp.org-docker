@@ -1,4 +1,4 @@
-FROM phusion/passenger-ruby24:0.9.27
+FROM phusion/passenger-customizable:0.9.27
 
 ENV RAILS_ENV production
 
@@ -29,6 +29,9 @@ WORKDIR /home/app/snpr
 RUN git rev-parse HEAD > REVISION
 RUN rm -rf .git
 RUN chown app:app -R /home/app
+
+RUN /usr/local/rvm/bin/rvm install $(cat .ruby-version)
+RUN /usr/local/rvm/bin/rvm alias create default $(cat .ruby-version)
 
 USER app
 
