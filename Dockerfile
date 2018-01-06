@@ -35,6 +35,8 @@ RUN /usr/local/rvm/bin/rvm alias create default $(cat .ruby-version)
 
 USER app
 
+RUN which ruby
+
 ADD database.yml config/database.yml
 RUN bundle install --deployment --without test development
 RUN cp .env.development .env
