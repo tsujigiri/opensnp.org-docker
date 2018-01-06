@@ -35,7 +35,7 @@ RUN /usr/local/rvm/bin/rvm alias create default $(cat .ruby-version)
 
 USER app
 
-RUN /usr/local/rvm/bin/rvm --default use $(cat .ruby-version)
+RUN /usr/local/rvm/bin/rvm alias create default $(cat .ruby-version)
 RUN which ruby
 
 ADD database.yml config/database.yml
