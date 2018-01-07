@@ -1,4 +1,8 @@
 services:
   - docker
+  - postgresql
+addons:
+  postgresql: '9.3'
 script:
   - docker build -t opensnp-test .
+  - docker run --env-file=test/env opensnp-test bundle exec rake db:setup
