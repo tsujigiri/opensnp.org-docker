@@ -6,15 +6,15 @@ docker-compose build
 docker-compose up -d
 docker exec -ti opensnporgdocker_rails_1 bash -l -c 'bundle exec rake db:reset'
 
-n=10
+i=10
 while
   curl -sf "http://localhost:8080/" > /dev/null
   status=$?
-  [ $status -ne 0 -a $n -gt 0 ]
+  [ $status -ne 0 -a $i -gt 0 ]
 do
   sleep 1
-  n=$((n-1))
+  i=$((i-1))
 done
 
-docker-compose kill
+docker-compose rm -sfv
 exit $status
