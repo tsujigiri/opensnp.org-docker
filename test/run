@@ -3,7 +3,6 @@
 set -x
 
 mkdir postgres-data
-
 docker-compose up -d
 
 i=10
@@ -19,4 +18,5 @@ done
 
 docker-compose rm -sfv
 sudo rm -rf postgres-data
+
 exit $status
