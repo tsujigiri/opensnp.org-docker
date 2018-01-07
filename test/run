@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
+POSTGRES_DATA_DIR=test/postgres-data
+
 set -x
 
-mkdir postgres-data
+mkdir $POSTGRES_DATA_DIR
 docker-compose up -d
 
 i=10
@@ -17,6 +19,6 @@ do
 done
 
 docker-compose rm -sfv
-sudo rm -rf postgres-data
+rm -rf $POSTGRES_DATA_DIR
 
 exit $status
