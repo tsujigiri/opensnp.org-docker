@@ -4,7 +4,6 @@ set -x
 
 mkdir postgres-data
 
-docker-compose build
 docker-compose up -d
 
 i=10
