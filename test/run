@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+docker-compose build
+docker-compose up -d
+sleep 10
+docker exec -ti opensnporgdocker_rails_1 bash -l -c 'bundle exec rake db:reset'
+curl -fv "http://localhost:8080/"
+status=$?
+docker-compose kill
+exit $status
