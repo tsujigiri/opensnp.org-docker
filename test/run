@@ -2,6 +2,9 @@
 
 set -x
 
+docker volume ls
+docker prune -f
+
 docker-compose build
 docker-compose up -d
 docker exec -ti opensnporgdocker_rails_1 bash -l -c 'bundle exec rake db:reset'
