@@ -2,15 +2,14 @@
 
 set -x
 
-docker volume ls
-docker prune -f
+mkdir postgres-data
 
 docker-compose build
 docker-compose up -d
-docker exec -ti opensnporgdocker_rails_1 bash -l -c 'bundle exec rake db:reset'
 
 i=10
 while
+  docker exec -ti opensnporgdocker_rails_1 bash -l -c 'bundle exec rake db:reset'
   curl -sf "http://localhost:8080/" > /dev/null
   status=$?
   [ $status -ne 0 -a $i -gt 0 ]
@@ -20,4 +19,5 @@ do
 done
 
 docker-compose rm -sfv
+sudo rm -rf postgres-data
 exit $status
